@@ -1,6 +1,6 @@
 <div align="center">
   <h1> 🚩 FeatFlag 🚩 </h1>
-  <img width="500px" src="./images/fun-with-flags.jpg">
+  <img width="500px" src="https://raw.githubusercontent.com/rqbazan/featflag/master/images/fun-with-flags.jpg">
   <p>
     A small and modern ReactJS library to use
     <a href="https://martinfowler.com/articles/feature-toggles.html">
