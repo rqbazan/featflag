@@ -13,7 +13,8 @@
     "flippers"
   ],
   "files": [
-    "dist"
+    "dist",
+    "images"
   ],
   "author": {
     "name": "Ricardo Alexis Quiroz Bazan",
