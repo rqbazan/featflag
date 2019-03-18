@@ -1,6 +1,6 @@
 {
   "name": "@rqbazan/featflag",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": false,
   "description": "A small ReactJS library to use the feature toggling principle",
   "main": "dist/index.js",
