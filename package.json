@@ -1,6 +1,6 @@
 {
   "name": "featflag",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": false,
   "description": "A small ReactJS library to use the feature toggling principle",
   "main": "dist/index.js",
