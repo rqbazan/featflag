@@ -2,9 +2,13 @@
   "name": "@rqbazan/featflag",
   "version": "1.0.2",
   "private": false,
-  "description": "A small ReactJS library to use the feature toggling principle",
+  "description": "A small and modern ReactJS library to use the feature toggling principle",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rqbazan/featflag.git"
+  },
   "keywords": [
     "features",
     "flags",
