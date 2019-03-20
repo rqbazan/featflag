@@ -12,13 +12,13 @@
 ## 🌌 Installation 🌌
 
 ```sh
-$ yarn add featflag
+$ yarn add @rqbazan/featflag
 ```
 
 or
 
 ```sh
-$ npm install --save featflag
+$ npm install --save @rqbazan/featflag
 ```
 
 ## 🎉 Components and Hooks 🎉
