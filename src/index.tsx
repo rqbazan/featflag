@@ -18,17 +18,15 @@ export const FlagProvider: React.FC<FlagProviderProps> = props => {
   const { children, features } = props
 
   const featuresMap = React.useMemo(() => {
-    const feturesMap = features.reduce((previous, current) => {
+    const createObject = (previous, current) => {
       return { ...previous, [current]: true }
-    }, {})
+    }
 
-    return feturesMap
+    return features.reduce(createObject, {})
   }, [features])
 
   const hasFeature = React.useCallback(
-    featureName => {
-      return featureName in featuresMap
-    },
+    featureName => featureName in featuresMap,
     [features]
   )
 
