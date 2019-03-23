@@ -48,7 +48,6 @@
     "react-hooks-testing-library": "^0.3.7",
     "react-testing-library": "^6.0.0",
     "sinon": "^7.2.7",
-    "ts-node": "^8.0.3",
     "typescript": "^3.3.3333"
   },
   "ava": {
