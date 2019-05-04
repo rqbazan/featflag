@@ -70,17 +70,6 @@
       "@commitlint/config-conventional"
     ]
   },
-  "release": {
-    "publish": [
-      {
-        "path": "@semantic-release/npm",
-        "npmPublish": false
-      },
-      {
-        "path": "@semantic-release/github"
-      }
-    ]
-  },
   "peerDependencies": {
     "react": "^16.8.4",
     "react-dom": "^16.8.4"
