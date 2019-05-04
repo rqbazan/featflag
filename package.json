@@ -29,7 +29,8 @@
   "scripts": {
     "build": "rm -rf dist && tsc",
     "test": "tsc --build tsconfig.testing.json && ava",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "release": "semantic-release"
   },
   "ava": {
     "files": [
@@ -69,6 +70,17 @@
       "@commitlint/config-conventional"
     ]
   },
+  "release": {
+    "publish": [
+      {
+        "path": "@semantic-release/npm",
+        "npmPublish": false
+      },
+      {
+        "path": "@semantic-release/github"
+      }
+    ]
+  },
   "peerDependencies": {
     "react": "^16.8.4",
     "react-dom": "^16.8.4"
@@ -91,6 +103,7 @@
     "react-dom": "^16.8.4",
     "react-hooks-testing-library": "^0.3.7",
     "react-testing-library": "^6.0.0",
+    "semantic-release": "^15.13.3",
     "sinon": "^7.2.7",
     "typescript": "^3.3.3333"
   },
