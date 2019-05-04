@@ -1,5 +1,13 @@
 import React from 'react'
 
+const emptyFeaturesArrayWarning = (features: string[]) => {
+  if (features && features.length > 0) {
+    return
+  }
+
+  console.warn(`The provided "features" array is empty`)
+}
+
 export interface FlagContext {
   hasFeature: (featureName: string) => boolean
   features: string[]
@@ -70,12 +78,4 @@ export const useFlag: UseFlagHook = featureName => {
   emptyFeaturesArrayWarning(features)
 
   return hasFeature(featureName)
-}
-
-const emptyFeaturesArrayWarning = (features: string[]) => {
-  if (features && features.length > 0) {
-    return
-  }
-
-  console.warn(`The provided "features" array is empty`)
 }
