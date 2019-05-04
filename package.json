@@ -9,6 +9,7 @@
     "type": "git",
     "url": "https://github.com/rqbazan/featflag.git"
   },
+  "license": "MIT",
   "keywords": [
     "features",
     "flags",
@@ -27,28 +28,8 @@
   },
   "scripts": {
     "build": "rm -rf dist && tsc",
-    "test": "tsc --build tsconfig.testing.json && ava"
-  },
-  "license": "MIT",
-  "peerDependencies": {
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4"
-  },
-  "devDependencies": {
-    "@types/lodash.values": "^4.3.6",
-    "@types/react": "^16.8.8",
-    "@types/react-dom": "^16.8.2",
-    "@types/sinon": "^7.0.10",
-    "ava": "^1.3.1",
-    "jsdom": "^14.0.0",
-    "jsdom-global": "^3.0.2",
-    "lodash.values": "^4.3.0",
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4",
-    "react-hooks-testing-library": "^0.3.7",
-    "react-testing-library": "^6.0.0",
-    "sinon": "^7.2.7",
-    "typescript": "^3.3.3333"
+    "test": "tsc --build tsconfig.testing.json && ava",
+    "lint": "eslint ."
   },
   "ava": {
     "files": [
@@ -59,5 +40,61 @@
     "require": [
       "./ava.setup.js"
     ]
+  },
+  "eslintIgnore": [
+    "dist"
+  ],
+  "eslintConfig": {
+    "extends": "rqbazan-ts/react",
+    "rules": {
+      "jsx-a11y/accessible-emoji": "off",
+      "import/no-extraneous-dependencies": [
+        "error",
+        {
+          "devDependencies": [
+            "**/*.spec.tsx",
+            "ava.setup.js"
+          ]
+        }
+      ]
+    }
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "peerDependencies": {
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^7.5.2",
+    "@commitlint/config-conventional": "^7.5.0",
+    "@types/lodash.values": "^4.3.6",
+    "@types/react": "^16.8.8",
+    "@types/react-dom": "^16.8.2",
+    "@types/sinon": "^7.0.10",
+    "ava": "^1.3.1",
+    "eslint": "^5.16.0",
+    "eslint-config-rqbazan-ts": "^0.1.1",
+    "jsdom": "^14.0.0",
+    "jsdom-global": "^3.0.2",
+    "lodash.values": "^4.3.0",
+    "prettier": "^1.17.0",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "react-hooks-testing-library": "^0.3.7",
+    "react-testing-library": "^6.0.0",
+    "sinon": "^7.2.7",
+    "typescript": "^3.3.3333"
+  },
+  "dependencies": {
+    "husky": "^2.2.0"
   }
 }
