@@ -57,7 +57,8 @@
         {
           "devDependencies": [
             "**/*.spec.tsx",
-            "ava.setup.js"
+            "*.setup.js",
+            "*.config.js"
           ]
         }
       ]
