@@ -23,26 +23,23 @@ export interface FlagProviderProps {
 }
 
 export const FlagProvider: React.FC<FlagProviderProps> = props => {
-  const { children, features } = props
+  const { features } = props
 
-  const featuresMap = React.useMemo(() => {
-    const createObject = (previous, current) => {
+  const value = React.useMemo(() => {
+    const createObject = (previous: {}, current: string) => {
       return { ...previous, [current]: true }
     }
 
-    return features.reduce(createObject, {})
-  }, [features])
+    const featuresMap = features.reduce(createObject, {})
 
-  const hasFeature = React.useCallback(
-    featureName => featureName in featuresMap,
-    [features]
-  )
+    const hasFeature = featureName => {
+      return featureName in featuresMap
+    }
 
-  return (
-    <FlagContext.Provider value={{ features, hasFeature }}>
-      {children}
-    </FlagContext.Provider>
-  )
+    return { hasFeature, features }
+  }, [])
+
+  return <FlagContext.Provider {...props} value={value} />
 }
 
 export interface FlagProps {
@@ -50,8 +47,8 @@ export interface FlagProps {
 }
 
 export const Flag: React.FC<FlagProps> = props => {
-  const { hasFeature, features } = React.useContext(FlagContext)
   const { featureName, children } = props
+  const { hasFeature, features } = React.useContext(FlagContext)
 
   emptyFeaturesArrayWarning(features)
 
@@ -61,11 +58,7 @@ export const Flag: React.FC<FlagProps> = props => {
     return children(enabled)
   }
 
-  if (!enabled) {
-    return null
-  }
-
-  return children as React.ReactElement
+  return enabled && children
 }
 
 export interface UseFlagHook {
