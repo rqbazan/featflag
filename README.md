@@ -28,7 +28,10 @@ $ npm install --save @rqbazan/featflag
 Uses the `FlagContext.Provider` to easily pass down the features. Note, this should be always used in the root app file.
 
 ```js
-// app.js
+import { FlagProvider } from '@rqbazan/featflag'
+import App from './app'
+
+// this should be come from a external service
 const features = [
   'feature-a',
   'feature-b',
@@ -36,9 +39,13 @@ const features = [
   ...
 ]
 
-<FlagProvider features={features}>
-  <App />
-</FlagProvider>
+const Root = () => {
+  return (
+    <FlagProvider features={features}>
+      <App />
+    </FlagProvider>
+  )
+}
 ```
 
 ### `<Flag />`
@@ -46,19 +53,31 @@ const features = [
 Render its children if the feature name passed as prop is in the provided context.
 
 ```js
-<Flag featureName="some-feature-name">
-  <h1>Hi there</h1>
-</Flag>
+import { Flag } from '@rqbazan/featflag'
+
+const AwesomeComponent = () => {
+  return (
+    <Flag featureName="some-feature-name">
+      <h1>Hi there</h1>
+    </Flag>
+  )
+}
 ```
 
 Also support the render prop style
 
 ```js
-<Flag featureName="some-feature-name">
-  {enabled => {
-    return enabled ? <span>😉</span> : <span>🤔</span>
-  }}
-</Flag>
+import { Flag } from '@rqbazan/featflag'
+
+const AwesomeComponent = () => {
+  return (
+    <Flag featureName="some-feature-name">
+      {enabled => {
+        return enabled ? <span>😉</span> : <span>🤔</span>
+      }}
+    </Flag>
+  )
+}
 ```
 
 ### `useFlag(featureName)`
@@ -66,6 +85,8 @@ Also support the render prop style
 Returns `true` if the feature name passed as argument is in the provided context. Otherwise, `false`.
 
 ```js
+import { useFlag } from '@rqbazan/featflag'
+
 const AwesomeComponent = () => {
   const hasThatFeature = useFlag('some-feature-name')
 
