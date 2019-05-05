@@ -10,11 +10,5 @@
   },
   "[typescriptreact]": {
     "editor.formatOnSave": false
-  },
-  "files.exclude": {
-    "images": true,
-    ".vscode": true,
-    "dist": true,
-    "node_modules": false
   }
 }
