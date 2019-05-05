@@ -12,11 +12,10 @@ test.before(() => {
   warnSpy = sinon.spy(console, 'warn')
 })
 
-test.after(() => {
+test.afterEach(() => {
+  cleanup()
   warnSpy.restore()
 })
-
-test.afterEach(cleanup)
 
 const features = {
   RUN_IN_BACKGROUND: 'run-in-background',
@@ -37,6 +36,7 @@ test('useFlag returns always false when the features array is empty', t => {
   const { result } = renderHook(() => useFlag('some-feature-name'))
 
   t.false(result.current)
+  t.true(warnSpy.calledOnce)
   t.true(warnSpy.calledWith('The provided "features" array is empty'))
 })
 
@@ -62,7 +62,7 @@ test('Flag renders its children if the feature exists', t => {
 
 test("Flag doesn't render its children if the feature doesn't exist", t => {
   const tree = (
-    <Flag featureName="some-feature-name">
+    <Flag featureName="non-existent-feature-name">
       <h1>Hi there</h1>
     </Flag>
   )
@@ -85,4 +85,35 @@ test('ensure the render prop style of Flag', t => {
 
   t.is(container.children.length, 1)
   t.is(container.firstChild, document.querySelector('#winking'))
+})
+
+test('avoid re-render by context provider render', t => {
+  const renderContent = () => {
+    return 'Hello there'
+  }
+
+  const renderContentSpy = sinon.spy(renderContent)
+
+  const tree = (
+    <Flag featureName={features.RUN_IN_BACKGROUND}>{renderContentSpy}</Flag>
+  )
+
+  const { rerender } = render(tree, { wrapper })
+
+  rerender(tree)
+
+  t.true(renderContentSpy.calledOnce)
+})
+
+test('Flag calls to empty array warning if the provided value is empty', t => {
+  const tree = (
+    <Flag featureName="some-feature-name">
+      <h1>Hi there</h1>
+    </Flag>
+  )
+
+  render(tree)
+
+  t.true(warnSpy.calledOnce)
+  t.true(warnSpy.calledWith('The provided "features" array is empty'))
 })
