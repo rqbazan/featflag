@@ -62,7 +62,7 @@ test('Flag renders its children if the feature exists', t => {
 
 test("Flag doesn't render its children if the feature doesn't exist", t => {
   const tree = (
-    <Flag featureName="some-feature-name">
+    <Flag featureName="non-existent-feature-name">
       <h1>Hi there</h1>
     </Flag>
   )
@@ -94,7 +94,9 @@ test('avoid re-render by context provider render', t => {
 
   const renderContentSpy = sinon.spy(renderContent)
 
-  const tree = <Flag featureName="run-in-background">{renderContentSpy}</Flag>
+  const tree = (
+    <Flag featureName={features.RUN_IN_BACKGROUND}>{renderContentSpy}</Flag>
+  )
 
   const { rerender } = render(tree, { wrapper })
 
