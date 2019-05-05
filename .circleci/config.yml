@@ -39,6 +39,8 @@ jobs:
 
       - run: yarn test
 
+      - run: yarn bundlesize
+
   release:
     <<: *defaults
     steps:

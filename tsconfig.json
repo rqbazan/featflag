@@ -5,7 +5,7 @@
     "jsx": "react",
     "declaration": true,
     "sourceMap": false,
-    "outDir": "dist",
+    "outDir": "lib",
     "rootDir": "src",
     "strict": true,
     "noImplicitAny": false,
