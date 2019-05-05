@@ -1,7 +1,7 @@
 import typescript from 'rollup-plugin-typescript'
 import pkg from './package.json'
 
-export default {
+const libraryConfig = {
   input: 'src/index.tsx',
   plugins: [typescript()],
   external: ['react'],
@@ -18,3 +18,21 @@ export default {
     }
   ]
 }
+
+const avaConfig = {
+  input: 'src/index.spec.tsx',
+  plugins: [typescript()],
+  external: Object.keys(pkg.devDependencies),
+  output: {
+    file: 'lib/index.spec.js',
+    format: 'cjs'
+  }
+}
+
+const configs = [libraryConfig]
+
+if (process.env.NODE_ENV === 'ava') {
+  configs.push(avaConfig)
+}
+
+export default configs
