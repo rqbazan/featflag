@@ -31,7 +31,7 @@ Uses the `FlagContext.Provider` to easily pass down the features. Note, this sho
 import { FlagProvider } from '@rqbazan/featflag'
 import App from './app'
 
-// this should be come from a external service
+// this should be come from an external service
 const features = [
   'feature-a',
   'feature-b',
