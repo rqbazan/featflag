@@ -1,12 +1,12 @@
 import React from 'react'
 import test from 'ava'
-import sinon from 'sinon'
-import { render, cleanup } from 'react-testing-library'
-import { renderHook } from 'react-hooks-testing-library'
+import sinon, { SinonSpy } from 'sinon'
+import { render, cleanup } from '@testing-library/react'
+import { renderHook } from '@testing-library/react-hooks'
 import getObjectValuesAsArray from 'lodash.values'
 import { useFlag, FlagProvider, Flag } from './index'
 
-let warnSpy
+let warnSpy: SinonSpy
 
 test.before(() => {
   warnSpy = sinon.spy(console, 'warn')
