@@ -72,3 +72,24 @@ export const useFlag: UseFlagHook = featureName => {
 
   return hasFeature(featureName)
 }
+
+export interface WithFF<P = {}> {
+  (C: React.ComponentType<P & FFProps>): React.ComponentType<P & FFProps>
+}
+
+export type FFProps = Partial<Pick<FlagContext, 'hasFeature'>>
+
+export const withFF: WithFF = Component => {
+  const WithFF: React.FC<FFProps> = props => {
+    const { hasFeature } = React.useContext(FlagContext)
+
+    return <Component {...props} hasFeature={hasFeature} />
+  }
+
+  if (process.env.NODE_ENV !== 'production') {
+    const displayName = Component.displayName || 'Component'
+    WithFF.displayName = `WithFF(${displayName})`
+  }
+
+  return WithFF
+}
