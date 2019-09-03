@@ -1,6 +1,6 @@
 <div align="center">
   <h1> 🚩 FeatFlag 🚩 </h1>
-  <img width="500px" src="https://raw.githubusercontent.com/rqbazan/featflag/master/images/fun-with-flags.jpg">
+  <img width="500px" src="https://i.imgur.com/KPhrya3.jpg">
   <p>
     A small and modern ReactJS library to use
     <a href="https://martinfowler.com/articles/feature-toggles.html">
@@ -97,6 +97,29 @@ const AwesomeComponent = () => {
     </>
   )
 }
+```
+
+### `withFF(Component)`
+
+Returns a wrapper component which receive `hasFeature` function as prop.
+
+```js
+import { withFF } from '@rqbazan/featflag'
+
+const AwesomeComponent = props => {
+  const { hasFeature } = props
+
+  const hasThatFeature = hasFeature('some-feature-name')
+
+  return (
+    <>
+      <h1>My awesome app</h1>
+      {hasThatFeature && <SomeComponent />}
+    </>
+  )
+}
+
+export default withFF(AwesomeComponent)
 ```
 
 ## 🍕 LICENSE 🍕
