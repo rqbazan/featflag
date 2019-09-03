@@ -99,6 +99,29 @@ const AwesomeComponent = () => {
 }
 ```
 
+### `withFF(Component)`
+
+Returns a wrapper component which receive `hasFeature` function as prop.
+
+```js
+import { withFF } from '@rqbazan/featflag'
+
+const AwesomeComponent = props => {
+  const { hasFeature } = props
+
+  const hasThatFeature = hasFeature('some-feature-name')
+
+  return (
+    <>
+      <h1>My awesome app</h1>
+      {hasThatFeature && <SomeComponent />}
+    </>
+  )
+}
+
+export default withFF(AwesomeComponent)
+```
+
 ## 🍕 LICENSE 🍕
 
 MIT
