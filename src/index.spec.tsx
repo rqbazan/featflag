@@ -4,7 +4,7 @@ import sinon, { SinonSpy } from 'sinon'
 import { render, cleanup } from '@testing-library/react'
 import { renderHook } from '@testing-library/react-hooks'
 import getObjectValuesAsArray from 'lodash.values'
-import { useFlag, FlagProvider, Flag } from './index'
+import { useFlag, FlagProvider, Flag, withFF } from './index'
 
 let warnSpy: SinonSpy
 
@@ -116,4 +116,25 @@ test('Flag calls to empty array warning if the provided value is empty', t => {
 
   t.true(warnSpy.calledOnce)
   t.true(warnSpy.calledWith('The provided "features" array is empty'))
+})
+
+test('ensure the HOC style of Feature Flags', t => {
+  const App = withFF(props => {
+    const { hasFeature } = props
+
+    const hasPickUp = hasFeature(features.CUSTOM_PICK_UP)
+    const hasHeader = hasFeature('awesome-header')
+
+    return (
+      <div>
+        {hasHeader && <header>Awesome Header</header>}
+        {hasPickUp && <p>Custom Pick Up</p>}
+      </div>
+    )
+  })
+
+  const { getByText } = render(<App />, { wrapper })
+
+  t.falsy(document.querySelector('header'))
+  t.is(getByText(/Custom Pick Up/), document.querySelector('p'))
 })
